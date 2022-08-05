@@ -1,0 +1,12 @@
+<form [formGroup]="simulationSettings">
+  <div class="settings-container">
+
+    <!-- Simulation duration -->
+    <label for="simulationDuration">Duration of the simulation: </label>
+    <input id="simulationDuration" type="text" formControlName="simulationSettings">
+
+    <button type="button" (click)="startSimulation()">Start simulation</button>
+
+
+  </div>
+</form>
