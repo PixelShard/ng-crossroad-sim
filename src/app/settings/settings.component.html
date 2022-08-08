@@ -46,7 +46,7 @@
       <button type="button" (click)="startSimulation()"
               [innerText]="status.inProgress ? 'Stop simulation' : 'Start simulation'"></button>
 
-      <div *ngIf="status?.inProgress">
+      <div>
         Current time: {{status.currentTime}}
       </div>
 

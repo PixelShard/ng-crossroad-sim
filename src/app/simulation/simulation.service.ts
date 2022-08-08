@@ -16,7 +16,12 @@ export class SimulationService {
   #simulationSettings: BehaviorSubject<ISimulationConfig> = new BehaviorSubject<ISimulationConfig>({...SIMULATION_DEFAULT_CONF});
   $simulationSettings = this.#simulationSettings.asObservable();
 
-  #simulationStatus: BehaviorSubject<ISimulationStatus> = new BehaviorSubject<ISimulationStatus>({...DEFAULT_SIMULATION_STATUS});
+  #simulationStatus: BehaviorSubject<ISimulationStatus> = new BehaviorSubject<ISimulationStatus>({
+    ...DEFAULT_SIMULATION_STATUS,
+    carQueue: {...DEFAULT_SIMULATION_STATUS.carQueue},
+    passedCarsQueue: {...DEFAULT_SIMULATION_STATUS.passedCarsQueue},
+    lights: {...DEFAULT_SIMULATION_STATUS.lights}
+  });
   $simulationStatus = this.#simulationStatus.asObservable();
 
   #simulationQueue: BehaviorSubject<IEvent[]> = new BehaviorSubject<IEvent[]>([]);
@@ -46,6 +51,14 @@ export class SimulationService {
   }
 
   public onStartSimulation() {
+    if (this.#simulationStatus.getValue().currentTime === this.#simulationSettings.getValue().duration) {
+      this.#simulationStatus.next({
+        ...DEFAULT_SIMULATION_STATUS,
+        carQueue: {...DEFAULT_SIMULATION_STATUS.carQueue},
+        passedCarsQueue: {...DEFAULT_SIMULATION_STATUS.passedCarsQueue},
+        lights: {...DEFAULT_SIMULATION_STATUS.lights}
+      })
+    }
     this.#simulationStatus.getValue().inProgress = !this.#simulationStatus.getValue().inProgress;
     this.#simulationStatus.next({...this.#simulationStatus.getValue()})
     this.runSimulation().then();
