@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SimulationService } from "../simulation/simulation.service";
 import { Observable, of } from "rxjs";
 import { ISimulationStatus } from "../simulation/interfaces/simulation-status";
@@ -12,21 +12,18 @@ import { CardinalDirectionsEnum } from "../simulation/enums/cardinal-directions.
   styleUrls: ['./crossroad.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CrossroadComponent implements OnInit {
+export class CrossroadComponent {
 
-  simulationStatus$: Observable<ISimulationStatus | null> = this.simulationService.$simulationStatus.pipe(
+  public simulationStatus$: Observable<ISimulationStatus | null> = this.simulationService.$simulationStatus.pipe(
     catchError(error => {
       console.error(error);
       return of(null);
     })
   )
-
   public TrafficLightColor = TrafficLightColorEnum;
   public CardinalDirectionsEnum = CardinalDirectionsEnum;
 
-  constructor(private simulationService: SimulationService) { }
-
-  ngOnInit(): void {
+  constructor(private simulationService: SimulationService) {
   }
 
 }

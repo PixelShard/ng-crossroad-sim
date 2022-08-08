@@ -73,12 +73,11 @@ export class EventsHelper {
 
   }
 
-  canCarMove(lightColor: TrafficLightColorEnum, queueLength: number): boolean {
+  private canCarMove(lightColor: TrafficLightColorEnum, queueLength: number): boolean {
     return queueLength > 0 && lightColor === TrafficLightColorEnum.GREEN;
   }
 
-  moveCarToPassedQueue(status: ISimulationStatus, direction: CardinalDirectionsEnum) {
-    console.log('moveCarToPassedQueue: ' + direction);
+  private moveCarToPassedQueue(status: ISimulationStatus, direction: CardinalDirectionsEnum) {
     status.passedCarsQueue[direction]++;
     status.carQueue[direction]--;
     return {...status};

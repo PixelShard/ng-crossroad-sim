@@ -11,7 +11,7 @@ import { ISimulationStatus } from "../simulation/interfaces/simulation-status";
   styleUrls: ['./settings.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
 
   simulationSettings = new FormGroup({
     simulationDuration: new FormControl(45 ,[Validators.required]),
@@ -24,7 +24,7 @@ export class SettingsComponent implements OnInit {
     carLeavingTime: new FormControl(10, [Validators.required])
   });
 
-  simulationStatus$: Observable<ISimulationStatus | null> = this.simulationService.$simulationStatus.pipe(
+  public simulationStatus$: Observable<ISimulationStatus | null> = this.simulationService.$simulationStatus.pipe(
     catchError(error => {
       console.error(error);
       return of(null);
@@ -32,9 +32,6 @@ export class SettingsComponent implements OnInit {
   )
 
   constructor(private simulationService: SimulationService) { }
-
-  ngOnInit(): void {
-  }
 
   async startSimulation() {
     if (!this.simulationService.isSimulationInProgress()) {

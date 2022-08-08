@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-vehicle-on-road',
@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./vehicle-on-road.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VehicleOnRoadComponent implements OnInit {
+export class VehicleOnRoadComponent {
 
   @Input() public queue: number = 0;
   @Input() public passedQueue: number = 0;
@@ -14,8 +14,5 @@ export class VehicleOnRoadComponent implements OnInit {
   @Input() public imgSrc: string = ''
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
