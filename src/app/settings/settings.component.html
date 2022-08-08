@@ -1,12 +1,55 @@
-<form [formGroup]="simulationSettings">
-  <div class="settings-container">
+<div *ngIf="simulationStatus$ | async as status">
+  <form [formGroup]="simulationSettings">
+    <div class="settings-container">
 
-    <!-- Simulation duration -->
-    <label for="simulationDuration">Duration of the simulation: </label>
-    <input id="simulationDuration" type="text" formControlName="simulationSettings">
+      <!-- Simulation duration -->
+      <div class="input-container">
+        <label for="simulationDuration">Duration of the simulation: </label>
+        <input id="simulationDuration" type="number" formControlName="simulationDuration">
+      </div>
+      <!-- Red lights switch timeout -->
+      <div class="input-container">
+        <label for="northSouthLightsDuration">North South lights duration: </label>
+        <input id="northSouthLightsDuration" type="number" formControlName="northSouthLightsDuration">
+      </div>
+      <!-- Green lights switch timeout -->
+      <div class="input-container">
+        <label for="eastWestLightsDuration">East West lights duration: </label>
+        <input id="eastWestLightsDuration" type="number" formControlName="eastWestLightsDuration">
+      </div>
+      <!-- North car queue interval -->
+      <div class="input-container">
+        <label for="northQueueInterval">North car arriving interval: </label>
+        <input id="northQueueInterval" type="number" formControlName="northQueueInterval">
+      </div>
+      <!-- South car queue interval -->
+      <div class="input-container">
+        <label for="southQueueInterval">South car arriving interval: </label>
+        <input id="southQueueInterval" type="number" formControlName="southQueueInterval">
+      </div>
+      <!-- East car queue interval -->
+      <div class="input-container">
+        <label for="eastQueueInterval">East car arriving interval: </label>
+        <input id="eastQueueInterval" type="number" formControlName="eastQueueInterval">
+      </div>
+      <!-- West car queue interval -->
+      <div class="input-container">
+        <label for="westQueueInterval">West car arriving interval: </label>
+        <input id="westQueueInterval" type="number" formControlName="westQueueInterval">
+      </div>
+      <!-- Car leaving time-->
+      <div class="input-container">
+        <label for="carLeavingTime">Car leaving time: </label>
+        <input id="carLeavingTime" type="number" formControlName="carLeavingTime">
+      </div>
 
-    <button type="button" (click)="startSimulation()">Start simulation</button>
+      <button type="button" (click)="startSimulation()"
+              [innerText]="status.inProgress ? 'Stop simulation' : 'Start simulation'"></button>
 
+      <div *ngIf="status?.inProgress">
+        Current time: {{status.currentTime}}
+      </div>
 
-  </div>
-</form>
+    </div>
+  </form>
+</div>

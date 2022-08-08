@@ -1,6 +1,7 @@
 .crossroad-container {
   width: 100%;
   height: 100%;
+  background-color: aliceblue;
 
   .crossroad-grid {
     width: 100%;
@@ -8,7 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: aliceblue;
+    background-color: slategrey;
 
     .crossroad-row {
       display: flex;
@@ -20,6 +21,7 @@
       .square {
         width: 33.33%;
         height: 100%;
+        position: relative;
 
         &.grass {
           background-color: darkolivegreen;
@@ -27,6 +29,105 @@
 
         &.road {
           background-color: slategrey;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .vertical-line {
+            position: absolute;
+            width: 0;
+            height: 100%;
+            border-left: 10px dashed #fff;
+          }
+
+          .horizontal-line {
+            position: absolute;
+            width: 100%;
+            height: 0;
+            border-top: 10px dashed #fff;
+          }
+
+        }
+
+        &.northWest {
+          border-bottom-right-radius: 20%;
+        }
+
+        &.northEast {
+          border-bottom-left-radius: 20%;
+        }
+
+        &.southWest {
+          border-top-right-radius: 20%;
+        }
+
+        &.southEast {
+          border-top-left-radius: 20%;
+        }
+
+        .traffic-lights {
+          width: 30px;
+          height: 60px;
+          background-color: #000;
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+
+          &.northWest {
+            bottom: 5%;
+            right: 10%;
+          }
+
+          &.northEast {
+            bottom: 5%;
+            left: 10%;
+            transform: rotate(90deg);
+          }
+
+          &.southWest {
+            top: 5%;
+            right: 10%;
+            transform: rotate(90deg);
+          }
+
+          &.southEast {
+            top: 5%;
+            left: 10%;
+          }
+
+
+          .light {
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            background-color: aliceblue;
+
+            &:first-child {
+              margin-bottom: 5px;
+            }
+
+            &.red {
+              background-color: #825a5a;
+
+              &.active {
+                background-color: #ff0000;
+
+              }
+            }
+
+            &.green {
+              background-color: #67806a;
+
+              &.active {
+                background-color: #2be849;
+
+              }
+            }
+          }
+
         }
       }
     }

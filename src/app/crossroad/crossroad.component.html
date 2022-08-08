@@ -1,19 +1,67 @@
 <div class="crossroad-container">
-  <div class="crossroad-grid">
+  <div class="crossroad-grid" *ngIf="simulationStatus$ | async as status">
     <div class="crossroad-row">
-      <div class="square grass"></div>
-      <div class="square road"></div>
-      <div class="square grass"></div>
+      <div class="square grass northWest">
+        <div class="traffic-lights northWest">
+          <div class="light red" [ngClass]="{'active': status.lights.North === TrafficLightColor.RED}"></div>
+          <div class="light green" [ngClass]="{'active': status.lights.North === TrafficLightColor.GREEN}"></div>
+        </div>
+      </div>
+      <div class="square road">
+        <div class="vertical-line"></div>
+        <app-vehicle-on-road [queue]="status.carQueue[CardinalDirectionsEnum.North]"
+                             [passedQueue]="status.passedCarsQueue[CardinalDirectionsEnum.South]"
+                             [imgSrc]="'assets/vehicles/tractor_red.png'"
+                             [position]="'north'"
+        ></app-vehicle-on-road>
+      </div>
+      <div class="square grass northEast">
+        <div class="traffic-lights northEast">
+          <div class="light red" [ngClass]="{'active': status.lights.East === TrafficLightColor.RED}"></div>
+          <div class="light green" [ngClass]="{'active': status.lights.East === TrafficLightColor.GREEN}"></div>
+        </div>
+      </div>
     </div>
     <div class="crossroad-row">
+      <div class="square road">
+        <div class="line horizontal-line"></div>
+        <app-vehicle-on-road [queue]="status.carQueue[CardinalDirectionsEnum.West]"
+                             [passedQueue]="status.passedCarsQueue[CardinalDirectionsEnum.East]"
+                             [imgSrc]="'assets/vehicles/tractor_orange.png'"
+                             [position]="'west'"
+        ></app-vehicle-on-road>
+      </div>
       <div class="square road"></div>
-      <div class="square road"></div>
-      <div class="square road"></div>
+      <div class="square road">
+        <div class="line horizontal-line"></div>
+        <app-vehicle-on-road [queue]="status.carQueue[CardinalDirectionsEnum.East]"
+                             [passedQueue]="status.passedCarsQueue[CardinalDirectionsEnum.West]"
+                             [imgSrc]="'assets/vehicles/tractor_green.png'"
+                             [position]="'east'"
+        ></app-vehicle-on-road>
+      </div>
     </div>
     <div class="crossroad-row">
-      <div class="square grass"></div>
-      <div class="square road"></div>
-      <div class="square grass"></div>
+      <div class="square grass southWest">
+        <div class="traffic-lights southWest">
+          <div class="light red" [ngClass]="{'active': status.lights.West === TrafficLightColor.RED}"></div>
+          <div class="light green" [ngClass]="{'active': status.lights.West === TrafficLightColor.GREEN}"></div>
+        </div>
+      </div>
+      <div class="square road">
+        <div class="vertical-line"></div>
+        <app-vehicle-on-road [queue]="status.carQueue[CardinalDirectionsEnum.South]"
+                             [passedQueue]="status.passedCarsQueue[CardinalDirectionsEnum.North]"
+                             [imgSrc]="'assets/vehicles/tractor_blue.png'"
+                             [position]="'south'"
+        ></app-vehicle-on-road>
+      </div>
+      <div class="square grass southEast">
+        <div class="traffic-lights southEast">
+          <div class="light red" [ngClass]="{'active': status.lights.South === TrafficLightColor.RED}"></div>
+          <div class="light green" [ngClass]="{'active': status.lights.South === TrafficLightColor.GREEN}"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

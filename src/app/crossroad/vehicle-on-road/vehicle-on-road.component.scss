@@ -1,0 +1,99 @@
+.car {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    &.vertical {
+      width: 100%;
+      height: auto;
+    }
+
+    &.horizontal {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .counter {
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+  }
+
+  &.north {
+    width: 60px;
+    height: auto;
+    bottom: 20%;
+    left: 5%;
+    .counter {
+      top: -30px;
+    }
+  }
+
+  &.south {
+    width: 60px;
+    height: auto;
+    top: 20%;
+    right: 5%;
+    .counter {
+      bottom: -30px;
+    }
+  }
+
+  &.west {
+    width: auto;
+    height: 60px;
+    right: 20%;
+    bottom: 5%;
+    .counter {
+      left: -30px;
+    }
+  }
+
+  &.east {
+    height: 60px;
+    width: auto;
+    left: 20%;
+    top: 5%;
+    .counter {
+      right: -30px;
+    }
+  }
+}
+
+.passed-car {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8fdff;
+
+  &.south {
+    bottom: 5%;
+    left: 5%;
+    background-color: #a92343;
+  }
+
+  &.north {
+    top: 5%;
+    right: 5%;
+    background-color: #3b7bce;
+  }
+
+  &.east {
+    bottom: 5%;
+    right: 5%;
+    background-color: #d77d23;
+  }
+
+  &.west {
+    top: 5%;
+    left: 5%;
+    background-color: #14ac37;
+  }
+}

@@ -1,0 +1,10 @@
+<div *ngIf="queue >= 1"
+     class="car {{position}}">
+  <img src="{{imgSrc}}" alt="tractor"
+       [ngClass]="{'vertical': position === 'north' || position === 'south', 'horizontal': position === 'west' || position === 'east'}">
+  <span class="counter">{{queue}}</span>
+</div>
+<div *ngIf="passedQueue >= 1"
+     class="passed-car {{position}}">
+  <span>{{passedQueue}}</span>
+</div>
