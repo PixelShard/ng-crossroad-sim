@@ -63,6 +63,12 @@
 
         &.southEast {
           border-top-left-radius: 20%;
+
+          a {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+          }
         }
 
         .traffic-lights {
