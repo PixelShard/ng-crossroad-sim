@@ -94,6 +94,9 @@ export class SimulationService {
         this.popQueue(status.currentTime);
         if (status.currentTime < settings.duration) {
           this.simulationLoop();
+        } else {
+          status.inProgress = false;
+          this.#simulationStatus.next({...status});
         }
       }, this.stepTimeout)
     }
